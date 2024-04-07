@@ -14,7 +14,9 @@ export async function POST(req: Request, res: Response) {
 
 
   try {
+    // @ts-ignore
     const buffer = Buffer.from(await file.arrayBuffer());
+    // @ts-ignore
     const fileExt = path.extname(file.name).toLowerCase();
 
     if (fileExt !== '.txt') 
@@ -106,7 +108,8 @@ class LangchainAnalysisService {
       const chunks = this.chunkText(content, 400);
       const summariesPromises = chunks.map(chunk => this.summarizeText(chunk));
       const summaries = await Promise.all(summariesPromises);
-      const finalSummary = {text: await this.summarizeSummaries(summaries)};
+      // @ts-ignore
+      const finalSummary = {text: await this.summarizeSummaries(summaries.filter(s => s))};
       return finalSummary;
   }
 }

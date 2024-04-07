@@ -6,7 +6,11 @@ import { ChangeEvent, useState } from "react"
 
 export function InputFile() {
   const [data, setData] = useState<string>("")
+  const [isLoading, setIsLoading] = useState<boolean>(false)
+
   const onChange = async (e: ChangeEvent<HTMLInputElement>) => {
+    setIsLoading(true)
+    // @ts-ignore
     const file = e.target.files[0]
     const formData = new FormData()
     formData.append("file", file)
@@ -16,6 +20,7 @@ export function InputFile() {
     })
     const data = await response.json()
     setData(data)
+    setIsLoading(false)
   }
 
   return (
@@ -25,6 +30,7 @@ export function InputFile() {
         <Input type="file" onChange={onChange} />
       </div>
       <div>
+        {isLoading && <p>Loading...</p>}
         {data}
       </div>
     </>
