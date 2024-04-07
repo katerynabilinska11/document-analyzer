@@ -52,6 +52,8 @@ class LangchainAnalysisService {
                       - Your summary should be comprehensive enough to inform developers about the project and features that should be implemented.
                       - Questions should have question mark at the end.
                       - Please use markdown for formatting.
+                      - Features may contains subfeatures and each subfeature should be listed with a bullet points.
+                      
 
                       Example: Here is an example of a summary that follows the structure outlined above. DO NOT USE any of the content from this example in your response. DO NOT evaluate this example summary in your response. Only use the structure as a guide for your response.
                       
@@ -59,9 +61,21 @@ class LangchainAnalysisService {
                       The client is seeking the development of an interview management application utilizing Angular for the frontend, .Net Core for the backend, and MSSQL for the database. The application will encompass role management, authorization, authentication, and candidate management functionalities.
                       
                       **2. Features:**
-                      - Role management system catering to administrators, recruiters, interviewers, and candidates.\
-                      - Implementation of authorization and authentication through Google Sign-In.
-                      - Candidate management capabilities covering various details such as personal information, education, languages, technologies, resume upload, status tracking, contacts, portfolio, experience, availability, cover letter, references, interview notes, and general notes.
+                      - Role management system
+                        - create role
+                        - assign role
+                        - manage permission
+                      - Authorization
+                        - sign in
+                        - sign up
+                      - Candidate management
+                        - manage personal details
+                        - upload resume
+                        - track status
+                      - Interview functionalities
+                        - schedule interview
+                        - set reminder
+                        - review results
                       
                       **3. Questions:** 
                       - What are the specific requirements for the role management system functionalities?

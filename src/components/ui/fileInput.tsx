@@ -6,6 +6,7 @@ import { ChangeEvent, useState } from "react"
 
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import "./style.css"
 
 export function InputFile() {
   const [data, setData] = useState<string>("")

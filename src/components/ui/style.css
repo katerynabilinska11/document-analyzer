@@ -1,0 +1,8 @@
+li{
+    list-style-type: circle;
+    margin-left: 2rem;
+}
+
+p, ul{
+    margin-bottom: 1rem;
+}
