@@ -20,7 +20,7 @@ export async function POST(req: Request, res: Response) {
 
     const content = JSON.stringify(buffer.toString('utf-8'));
 
-    const analysisService = new LangchainAnalysisService();
+    const analysisService = new AnalysisService();
     const response = await analysisService.openAISummary(content);
 
     return NextResponse.json(response.text);
@@ -29,7 +29,7 @@ export async function POST(req: Request, res: Response) {
   }
 }
 
-class LangchainAnalysisService {
+class AnalysisService {
   async summarizeText (text:string) {
       const openai = new OpenAIClient({ apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY });
       try {
@@ -113,7 +113,7 @@ class LangchainAnalysisService {
           const chunk = words.slice(i, i + chunkSize).join(' ');
           chunks.push(chunk);
       }
-      
+
       return chunks;
   }
 
