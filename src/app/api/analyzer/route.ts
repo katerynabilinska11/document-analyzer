@@ -4,10 +4,7 @@ import path from "path";
 
 export async function POST(req: Request, res: Response) {
     const formData = await req.formData();
-
-
     const file = formData.get("file");
-
     if (!file) {
       return NextResponse.json({ error: "No files received." }, { status: 400 });
     }
@@ -18,14 +15,14 @@ export async function POST(req: Request, res: Response) {
     const buffer = Buffer.from(await file.arrayBuffer());
     // @ts-ignore
     const fileExt = path.extname(file.name).toLowerCase();
-
     if (fileExt !== '.txt') 
       throw new Error('Unsupported file format');
 
     const content = JSON.stringify(buffer.toString('utf-8'));
-    const analysisService = new LangchainAnalysisService();
 
+    const analysisService = new LangchainAnalysisService();
     const response = await analysisService.openAISummary(content);
+
     return NextResponse.json(response.text);
   } catch (error) {
     return NextResponse.json({ Message: "Failed", status: 500 });
@@ -116,6 +113,7 @@ class LangchainAnalysisService {
           const chunk = words.slice(i, i + chunkSize).join(' ');
           chunks.push(chunk);
       }
+      
       return chunks;
   }
 
